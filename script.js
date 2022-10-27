@@ -287,18 +287,18 @@ const Tree = (unsortedArray) => {
     // 11 
     const rebalance = (root) => {
 
-        console.log(inorder(root));
+        // console.log(inorder(root));
         let arraybeforesort = inorder(root);
         let semiarraybeforesort = [... new Set(arraybeforesort)];
         let arrayToBalance = mergeSort(semiarraybeforesort);
         let endOfArrayToBalance = arrayToBalance.length;
         startOfArray = 0;
 
-        updatedRoot = buildTree(arrayToBalance, startOfArray, endOfArrayToBalance - 1);
-        // ^ add nw
-        console.log(root);
-        console.log(root);
-        console.log(root);
+        root = buildTree(arrayToBalance, startOfArray, endOfArrayToBalance - 1);
+        // change to updatedRoot if you want to change the driver below.
+        // console.log(root);
+        // console.log(root);
+        // console.log(root);
         // prettyPrint(root);
         // console.log(isBalanced(root));
         // console.log(levelOrder(root));
@@ -307,8 +307,8 @@ const Tree = (unsortedArray) => {
         // console.log(postorder(root));
         // so  it's all fine here, but it doesn't return properly?
         
-        return updatedRoot;
-    }    // ^ add nw
+        return root;
+    }   // change to updatedRoot if you want to change the driver below.
 
     // other
     const prettyPrint = (node, prefix = '', isLeft = true) => {
@@ -404,15 +404,29 @@ console.log("#4 is complete");
 console.log(tree.isBalanced(root));
 console.log("#5 is complete");
 
-tree.rebalance(root);
-tree.prettyPrint(updatedRoot);
+// tree.rebalance(root);
+// console.log(tree.rebalance.root);
+// console.log(tree.rebalance(root));
+// console.log(root);
+tree.prettyPrint(tree.rebalance(root));
+// console.log(tree.prettyPrint(root));
 console.log("#6 is complete");
+console.log(tree.root);
 
-console.log(tree.isBalanced(updatedRoot));
+console.log(tree.isBalanced(tree.rebalance(root)));
 console.log("#7 is complete");
 
-console.log(tree.levelOrder(updatedRoot));
-console.log(tree.inorder(updatedRoot));
-console.log(tree.preorder(updatedRoot));
-console.log(tree.postorder(updatedRoot));
+console.log(tree.levelOrder(tree.rebalance(root)));
+console.log(tree.inorder(tree.rebalance(root)));
+console.log(tree.preorder(tree.rebalance(root)));
+console.log(tree.postorder(tree.rebalance(root)));
 console.log("#8 is complete");
+
+// only issue is that i couldn't figure out how to use the old variable and just update it
+// instead i had to create an updatedRoot variable for the updated tree. - OLD
+
+// FIGURED OUT: 
+// It's the value of root in tree.rebalance, not just in tree.value
+// tree.root = the old root
+// tree.rebalance.root = the new updated good root
+// So I know WHAT the problem is, and obviously it still works without it, but it's  not 100% perfect. 
